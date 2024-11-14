@@ -12,11 +12,43 @@ setup();
 
 background(255, 255, 255);
 
-let x = 400;
-let y = 140;
+let gameRunning = true;
+let gameState = "start";
+let landingY = 595;
+let result;
 
-function victim(x, y, s) {
-  // the code of the victim stickman
+// Setting for elevator
+let victim = {
+  x: 400,
+  y: 140,
+  velocity: 0.5,
+  acceleration: 0.16,
+};
+
+function backgroundElements() {
+  
+}
+
+
+function gameOver() {
+  push();
+  background(255, 255, 255);
+  strokeWeight();
+  text("Game Over", 200, 100);
+  pop();
+}
+
+function gameWon() {
+  push();
+  background(255, 255, 255);
+  text("You saved Steve!", 200, 100);
+  pop();
+}
+
+
+
+  // the code of the victim stickman and elevator
+function victimStickman(x, y, s) {
 
   //ropes for the elevator
   push();
@@ -133,7 +165,6 @@ function savior(x, y, s) {
   ellipse(x + 270, y + 530, 4 * s, 3 * s);
 
   // head
-
   fill(255, 255, 255);
   ellipse(x + 308, y + 478, 60 * s);
 
@@ -160,15 +191,49 @@ function savior(x, y, s) {
 let speed = 3;
 
 function draw() {
-  background(255, 255, 255);
-  victim(x, y, 0.7);
-
-  savior(400, 140, 0.7);
 
 
-  if (y <= 600) {
-    y += 3;
+  //GAME STATES
+  if (gameState === "start") {
+    background(255, 255, 255);
+    strokeWeight(0);
+    text("Start", 200, 100);
+  } else if (gameState === "game") {
+    background(255, 255, 255);
+    victimStickman(victim.x, victim.y, 0.7);
+    savior(400, 140, 0.7);
+
+    //Game mechanics
+    if (gameRunning) {
+      victim.y = victim.y + victim.velocity;
+      victim.velocity = victim.velocity + victim.acceleration;
+
+      if (victim.y > landingY && victim.velocity > 3) {
+        gameOver();
+        gameRunning = false;
+        gameState = "end";
+        result = "Steve fell out and crashed :( Be more careful next time!";
+      } else if (victim.y > landingY && victim.velocity <= 3) {
+        gameWon();
+        gameRunning = false;
+        gameState = "end";
+        result = "Yippie! You won! Slay!";
+      }
+
+      let thrustAcceleration = 0.4;
+
+      if (keyIsDown(UP_ARROW)) {
+        victim.velocity = victim.velocity - thrustAcceleration;
+      }
+    }
+  } else if (gameState === "end") {
+    background(255, 255, 255);
+    strokeWeight(0);
+    text(result, 200, 100);
   }
+
+
+
 
 
 
@@ -180,3 +245,21 @@ function draw() {
     }
 */
 }
+
+function mouseClicked() {
+  if (gameState === "start") {
+    gameState = "game";
+  } else if (gameState === "game") {
+    gameState = "end";
+  } else if (gameState === "end") {
+    gameState = "game";
+    gameRunning = true;
+    victim.x = 400;
+    victim.y = 140;
+    victim.velocity = 0.5;
+    victim.acceleration = 0.15;
+
+  }
+}
+
+
