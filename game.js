@@ -1,5 +1,5 @@
 function setup() {
-  createCanvas(900, 800);
+  createCanvas(800, 800);
 }
 
 setup();
@@ -22,11 +22,85 @@ let victim = {
   x: 400,
   y: 140,
   velocity: 0.5,
-  acceleration: 0.16,
+  acceleration: 0.15,
 };
 
 function backgroundElements() {
-  
+  //background color
+  background(19, 20, 62);
+
+  //moon
+  fill(246, 239, 233);
+  ellipse(width / 2, height / 2 + 100, 700);
+  fill(241, 227, 215);
+  strokeWeight();
+  push();
+  translate(240, 280);
+  rotate(2.5);
+  ellipse(0, 0, 140, 80);
+  pop();
+
+  push();
+  translate(130, 390);
+  rotate(2.2);
+  ellipse(0, 0, 100, 60);
+  pop();
+
+  push();
+  translate(200, 370);
+  rotate(1.5);
+  ellipse(0, 0, 50, 30);
+  pop();
+
+  //ground
+  fill(0, 0, 0);
+  ellipse(width / 2, 1930, 2500);
+
+  //house
+  triangle(300, 235, 400, 0, 500, 235);
+  rect(345, 235, 110, 250 * 0.5);
+
+  quad(265, 360, 280, 600, 520, 600, 510, 340);
+  triangle(255, 410, 275, 290, 360, 395);
+
+  triangle(530, 395, 490, 270, 450, 390);
+
+  triangle(210, 585, 255, 470, 340, 580);
+  triangle(600, 555, 540, 425, 480, 560);
+  quad(230, 580, 220, 720, 570, 720, 580, 550);
+
+  quad(580, 550, 600, 420, 560, 410, 560, 515);
+  triangle(610, 423, 590, 270, 550, 410);
+
+  //gravestone
+  beginShape();
+  vertex(175, 710);
+  vertex(170, 670);
+  bezierVertex(170, 640, 210, 660, 210, 670);
+  vertex(220, 700);
+  endShape(CLOSE);
+
+  quad(180, 655, 165, 615, 177, 610, 186, 658);
+  quad(155, 630, 154, 637, 195, 623, 195, 615);
+
+  //windows
+  fill(224, 122, 37);
+  quad(280, 418, 287, 467, 340, 460, 333, 405);
+  quad(498, 400, 505, 450, 450, 455, 447, 397);
+  quad(247, 590, 250, 670, 310, 670, 310, 580);
+  quad(550, 580, 555, 670, 475, 670, 477, 575);
+  quad(565, 430, 590, 430, 588, 453, 563, 449);
+
+  strokeWeight(2);
+  fill(0, 0, 0);
+  line(302, 411, 309, 463);
+  line(284, 442, 335, 432);
+  line(475, 395, 480, 455);
+  line(500, 425, 450, 427);
+  line(277, 585, 277, 670);
+  line(515, 577, 518, 668);
+  line(577, 430, 575, 450);
+  line(565, 440, 588, 442);
 }
 
 
@@ -195,12 +269,12 @@ function draw() {
 
   //GAME STATES
   if (gameState === "start") {
-    background(255, 255, 255);
+    backgroundElements();
     strokeWeight(0);
     text("Start", 200, 100);
   } else if (gameState === "game") {
-    background(255, 255, 255);
-    victimStickman(victim.x, victim.y, 0.7);
+    backgroundElements();
+    victimStickman(victim.x, victim.y, 0.5);
     savior(400, 140, 0.7);
 
     //Game mechanics
@@ -227,9 +301,9 @@ function draw() {
       }
     }
   } else if (gameState === "end") {
-    background(255, 255, 255);
+    backgroundElements();
     strokeWeight(0);
-    text(result, 200, 100);
+    text(result, 50, 100);
   }
 
 
