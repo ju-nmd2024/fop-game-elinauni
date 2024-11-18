@@ -17,7 +17,7 @@ let gameState = "start";
 let landingY = 595;
 let result;
 
-// Setting for elevator
+// Setting for victim
 let victim = {
   x: 400,
   y: 140,
@@ -25,9 +25,7 @@ let victim = {
   acceleration: 0.15,
 };
 
-
-
-
+//background for both 
 function backgroundElements() {
   //background color
   background(19, 20, 62);
@@ -57,7 +55,7 @@ function backgroundElements() {
 
   //ground
   fill(0, 0, 0);
-  ellipse(width / 2, 1930, 2500);
+  ellipse(800 / 2, 1930, 2500);
 
   //house
   triangle(300, 235, 400, 0, 500, 235);
@@ -94,6 +92,7 @@ function backgroundElements() {
   quad(550, 580, 555, 670, 475, 670, 477, 575);
   quad(565, 430, 590, 430, 588, 453, 563, 449);
 
+  //lines on windows
   strokeWeight(2);
   fill(0, 0, 0);
   line(302, 411, 309, 463);
@@ -121,7 +120,6 @@ function gameWon() {
   text("You saved Steve!", 200, 100);
   pop();
 }
-
 
 
   // the code of the victim stickman and elevator
@@ -218,6 +216,7 @@ function savior(x, y, s) {
   line(x + 260, y + 520, x + 310, y + 495);
   pop();
 
+  // red part of the switch
   fill(255, 0, 0);
   stroke(132, 8, 8);
   ellipse(x + 260, y + 530, 20);
@@ -265,12 +264,81 @@ function savior(x, y, s) {
 
 }
 
-let speed = 3;
+function saviorSecondPosition(x, y, s) {
+  // the code for the savior stickman
+
+  // the switch control for the savior
+  push();
+  stroke(150);
+  strokeWeight(3);
+  noFill();
+  triangle(x + 200, y + 595, x + 230, y + 560, x + 260, y + 595);
+  line(x + 230, y + 560, x + 200, y + 530);
+
+  // arm goes behind the switch
+  push();
+  stroke(0);
+  line(x + 200, y + 520, x + 247, y + 495);
+  pop();
+
+  // green part of the switch
+  fill(0, 255, 0);
+  stroke(35, 103, 35);
+  ellipse(x + 200, y + 530, 20);
+  pop();
+  
+  // THE SAVIOR STICKMAN
+  // body
+  push();
+  fill(255, 255, 255);
+  translate(x + 270, y + 520);
+  rotate(5.5);
+  rect(-14, -32, 40 * s, 85 * s);
+  pop();
+
+    // arms
+  push();
+  stroke(0, 0, 0);
+  strokeWeight(4 * s);
+  line(x + 210, y + 530, x + 247, y + 500);
+  ellipse(x + 210, y + 530, 4 * s, 3 * s);
+
+  // head
+  fill(255, 255, 255);
+  ellipse(x + 238, y + 484, 60 * s);
+
+
+  // legs
+  line(x + 298, y + 528, x + 330, y + 595);
+  line(x + 278, y + 550, x + 275, y + 575);
+  line(x + 275, y + 575, x + 280, y + 595);
+  ellipse(x + 328, y + 595, 4 * s, 3 * s);
+  ellipse(x + 279, y + 595, 4 * s, 3 * s);
+
+  // eyes
+  strokeWeight(2 * s);
+  fill(0, 0, 0);
+  ellipse(x + 225, y + 483, 7 * s);
+  ellipse(x + 225 + (24 * s), y + 483, 7 * s);
+  
+  // mouth
+  strokeWeight(3);
+  line(x + 225, y + 495, x + 225 + (24 * s), y + 495);
+
+}
 
 function draw() {
+  background(255, 255, 255);
+  saviorSecondPosition(400, 140, 0.7);
+}
 
 
+let speed = 3;
+
+
+function draw() {
   //GAME STATES
+  //gotten from Garrit's videos and a floppy bird
   if (gameState === "start") {
     backgroundElements();
     strokeWeight(0);
