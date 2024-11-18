@@ -4,13 +4,6 @@ function setup() {
 
 setup();
 
-// function draw() {
-//   background(255, 140, 0);
-// }
-
-// ////////////////
-
-background(255, 255, 255);
 
 let gameRunning = true;
 let gameState = "start";
@@ -31,6 +24,7 @@ function backgroundElements() {
   background(19, 20, 62);
 
   //moon
+  push();
   fill(246, 239, 233);
   ellipse(400, 400 + 100, 700);
   fill(241, 227, 215);
@@ -117,6 +111,7 @@ function gameOver() {
 function gameWon() {
   push();
   background(255, 255, 255);
+  strokeWeight();
   text("You saved Steve!", 200, 100);
   pop();
 }
@@ -143,7 +138,7 @@ function victimStickman(x, y, s) {
 
   push();
   fill(105, 72, 54);
-  strokeWeight(0);
+  strokeWeight();
   quad(x - 85 * s, y + 190 * s, x - 50 * s, y + 150 * s, x + 50 * s, y + 150 * s, x + 85 * s, y + 190 * s);
   quad(x - 85 * s, y - 60 * s, x - 50 * s, y - 20 * s, x + 50 * s, y - 20 * s, x + 85 * s, y - 60 * s);
   pop();
@@ -194,11 +189,6 @@ function victimStickman(x, y, s) {
   ellipse(x, y + 12 * s, 30 * s, 20 * s);
 }
 
-/*
-let x = 400;
-let y = 140;
-*/
-
 function savior(x, y, s, saviorIsNotActive) {
   //code for the animation of the savior's position
   if (saviorIsNotActive === true) {
@@ -211,23 +201,27 @@ function savior(x, y, s, saviorIsNotActive) {
   noFill();
   triangle(x + 200, y + 595, x + 230, y + 560, x + 260, y + 595);
   line(x + 230, y + 560, x + 260, y + 530);
+  pop();
 
   // arm goes behind the switch
   push();
   stroke(0);
+  strokeWeight(4 * 0.7);
   line(x + 260, y + 520, x + 310, y + 495);
   pop();
 
   // green part of the switch
+  push();
   fill(0, 255, 0);
   stroke(35, 103, 35);
+  strokeWeight(3);
   ellipse(x + 260, y + 530, 20);
   pop();
   
   // THE SAVIOR STICKMAN
   // body
   push();
-  strokeWeight(4 * s);  
+  strokeWeight(4 * 0.7);  
   fill(255, 255, 255);
   translate(x + 320, y + 520);
   rotate(2.9);
@@ -235,32 +229,44 @@ function savior(x, y, s, saviorIsNotActive) {
   pop();
 
   // arms
+  push();
   stroke(0, 0, 0);
-  strokeWeight(4 * s);  
+  strokeWeight(4 * 0.7);  
   line(x + 270, y + 530, x + 310, y + 500);
   ellipse(x + 270, y + 530, 4 * s, 3 * s);
+  pop();
 
   // head
+  push();
+  strokeWeight(4 * 0.7);  
   fill(255, 255, 255);
   ellipse(x + 308, y + 478, 60 * s);
+  pop();
 
 
   // legs
+  push();
+  strokeWeight(4 * 0.7);  
   line(x + 340, y + 545, x + 350, y + 595);
   line(x + 313, y + 553, x + 300, y + 575);
   line(x + 300, y + 575, x + 305, y + 595);
   ellipse(x + 348, y + 595, 4 * s, 3 * s);
   ellipse(x + 303, y + 595, 4 * s, 3 * s);
+  pop();
 
   // eyes
-  strokeWeight(2 * s);
+  push();
+  strokeWeight(2 * 0.7);
   fill(0, 0, 0);
   ellipse(x + 295, y + 475, 7 * s);
   ellipse(x + 295 + (24 * s), y + 475, 7 * s);
+  pop();
   
   // mouth
+  push();
   strokeWeight(3);
   line(x + 295, y + 485, x + 295 + (24 * s), y + 485);
+  pop();
 
   } else {
   // the code for the savior stickman in ACTIVE position
@@ -272,23 +278,27 @@ function savior(x, y, s, saviorIsNotActive) {
   noFill();
   triangle(x + 200, y + 595, x + 230, y + 560, x + 260, y + 595);
   line(x + 230, y + 560, x + 200, y + 530);
+  pop();
 
   // arm goes behind the switch
   push();
   stroke(0);
+  strokeWeight(3);
   line(x + 200, y + 520, x + 247, y + 495);
   pop();
 
   // red part of the switch
+  push();
   fill(255, 0, 0);
   stroke(132, 8, 8);
+  strokeWeight(3);
   ellipse(x + 200, y + 530, 20);
   pop();
   
   // THE SAVIOR STICKMAN
   // body
   push();
-  strokeWeight(4 * s);  
+  strokeWeight(4 * 0.7);  
   fill(255, 255, 255);
   translate(x + 270, y + 520);
   rotate(5.5);
@@ -298,35 +308,44 @@ function savior(x, y, s, saviorIsNotActive) {
   // arms
   push();
   stroke(0, 0, 0);
-  strokeWeight(4 * s);
+  strokeWeight(4 * 0.7);
   line(x + 210, y + 530, x + 247, y + 500);
   ellipse(x + 210, y + 530, 4 * s, 3 * s);
+  pop();
 
   // head
+  push();
+  strokeWeight(4 * 0.7);
   fill(255, 255, 255);
   ellipse(x + 238, y + 484, 60 * s);
+  pop();
 
 
   // legs
+  push();
+  strokeWeight(3);
   line(x + 298, y + 528, x + 330, y + 595);
   line(x + 278, y + 550, x + 275, y + 575);
   line(x + 275, y + 575, x + 280, y + 595);
   ellipse(x + 328, y + 595, 4 * s, 3 * s);
   ellipse(x + 279, y + 595, 4 * s, 3 * s);
+  pop();
 
   // eyes
-  strokeWeight(2 * s);
+  push();
+  strokeWeight(2 * 0.7);
   fill(0, 0, 0);
   ellipse(x + 225, y + 483, 7 * s);
   ellipse(x + 225 + (24 * s), y + 483, 7 * s);
+  pop();
   
   // mouth
+  push();
   strokeWeight(3);
   line(x + 225, y + 495, x + 225 + (24 * s), y + 495);
+  pop();
   }
 }
-
-let speed = 3;
 
 
 function draw() {
@@ -334,7 +353,7 @@ function draw() {
   //gotten from Garrit's videos and a floppy bird
   if (gameState === "start") {
     backgroundElements();
-    strokeWeight(0);
+    strokeWeight();
     text("Start", 200, 100);
   } else if (gameState === "game") {
     backgroundElements();
@@ -368,23 +387,11 @@ function draw() {
     }
   } else if (gameState === "end") {
     backgroundElements();
-    strokeWeight(0);
+    strokeWeight();
     text(result, 50, 100);
   }
-
-
-
-
-
-
-/*
-    y+=speed;
-    if (y>500 || y<200) {
-        speed = speed * -1;
-        console.log("Bounce");
-    }
-*/
 }
+
 
 function mouseClicked() {
   if (gameState === "start") {
