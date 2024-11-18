@@ -94,30 +94,13 @@ function backgroundElements() {
   line(475, 395, 480, 455);
   line(500, 425, 450, 427);
   line(277, 585, 277, 670);
-  line(515, 577, 518, 668);
+  line(515, 577, 518, 670);
   line(577, 430, 575, 450);
   line(565, 440, 588, 442);
 }
 
 
-function gameOver() {
-  push();
-  background(255, 255, 255);
-  strokeWeight();
-  text("Game Over", 200, 100);
-  pop();
-}
-
-function gameWon() {
-  push();
-  background(255, 255, 255);
-  strokeWeight();
-  text("You saved Steve!", 200, 100);
-  pop();
-}
-
-
-  // the code of the victim stickman and elevator
+// the code of the victim stickman AND elevator
 function victimStickman(x, y, s) {
 
   //ropes for the elevator
@@ -188,6 +171,40 @@ function victimStickman(x, y, s) {
   //mouth
   ellipse(x, y + 12 * s, 30 * s, 20 * s);
 }
+
+// the code of the victim stickman BUT no elevator
+function victimStickmanNoElevator(x, y, s) {
+    // arms
+    push();
+    fill(0, 0, 0);
+    strokeWeight(4 * s);
+    line(x, y + 50 * s, x + 60 * s, y - 20 * s);
+    ellipse(x + 60 * s, y - 20 * s, 4 * s, 3 * s);
+    line(x, y + 50 * s, x - 60 * s, y - 20 * s);
+    ellipse(x - 60 * s, y - 20 * s, 4 * s, 3 * s);
+  
+    // body and head
+    fill(255, 255, 255);
+    rect(x - 20 * s, y + 10 * s, 40 * s, 90 * s);
+    ellipse(x, y, 60 * s);
+  
+    // legs
+    line(x + 20 * s, y + 100 * s, x + 20 * s, y + 170 * s);
+    ellipse(x + 22 * s, y + 170 * s, 4 * s, 3 * s);
+    line(x - 20 * s, y + 100 * s, x - 20 * s, y + 170 * s);
+    ellipse(x - 22 * s, y + 170 * s, 4 * s, 3 * s);
+    pop();
+  
+    // eyes
+    strokeWeight(2 * s);
+    fill(0, 0, 0);
+    ellipse(x - 12 * s, y - 4 * s, 7 * s);
+    ellipse(x + 12 * s, y - 4 * s, 7 * s);
+  
+    //mouth
+    ellipse(x, y + 12 * s, 30 * s, 20 * s);
+  }
+
 
 function savior(x, y, s, saviorIsNotActive) {
   //code for the animation of the savior's position
@@ -367,17 +384,14 @@ function draw() {
       victim.velocity = victim.velocity + victim.acceleration;
 
       if (victim.y > landingY && victim.velocity > 3) {
-        gameOver();
         gameRunning = false;
         gameState = "end";
         result = "Steve fell out and crashed :( Be more careful next time!";
       } else if (victim.y > landingY && victim.velocity <= 3) {
-        gameWon();
         gameRunning = false;
         gameState = "end";
         result = "Yippie! You won! Slay!";
       }
-
       let thrustAcceleration = 0.4;
 
       if (keyIsDown(32)) {
@@ -388,6 +402,15 @@ function draw() {
   } else if (gameState === "end") {
     backgroundElements();
     strokeWeight();
+    
+
+  // different screens for win or lose
+  // the idea for the next 7 lines was taken from this video in youtube https://www.youtube.com/watch?v=hC36SiGuBfs
+  if (result.includes("crashed")) {
+    victimStickmanNoElevator(400, 140, 0.7);
+  }  else if (result.includes("won")) {
+    victimStickmanNoElevator(400, 140, 0.7);
+  }
     text(result, 50, 100);
   }
 }
