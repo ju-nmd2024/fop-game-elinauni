@@ -25,13 +25,16 @@ let victim = {
   acceleration: 0.15,
 };
 
+
+
+
 function backgroundElements() {
   //background color
   background(19, 20, 62);
 
   //moon
   fill(246, 239, 233);
-  ellipse(width / 2, height / 2 + 100, 700);
+  ellipse(400, 400 + 100, 700);
   fill(241, 227, 215);
   strokeWeight();
   push();
@@ -296,7 +299,7 @@ function draw() {
 
       let thrustAcceleration = 0.4;
 
-      if (keyIsDown(UP_ARROW)) {
+      if (keyIsDown(32)) {
         victim.velocity = victim.velocity - thrustAcceleration;
       }
     }
