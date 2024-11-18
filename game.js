@@ -199,8 +199,10 @@ let x = 400;
 let y = 140;
 */
 
-function savior(x, y, s) {
-  // the code for the savior stickman
+function savior(x, y, s, saviorIsNotActive) {
+  //code for the animation of the savior's position
+  if (saviorIsNotActive === true) {
+// the code for the savior stickman in DEFAULT position
 
   // the switch control for the savior
   push();
@@ -216,27 +218,25 @@ function savior(x, y, s) {
   line(x + 260, y + 520, x + 310, y + 495);
   pop();
 
-  // red part of the switch
-  fill(255, 0, 0);
-  stroke(132, 8, 8);
+  // green part of the switch
+  fill(0, 255, 0);
+  stroke(35, 103, 35);
   ellipse(x + 260, y + 530, 20);
   pop();
   
   // THE SAVIOR STICKMAN
-
-  // arms
-  push();
-  stroke(0, 0, 0);
-  strokeWeight(4 * s);
-
   // body
   push();
+  strokeWeight(4 * s);  
   fill(255, 255, 255);
   translate(x + 320, y + 520);
   rotate(2.9);
   rect(-14, -32, 40 * s, 85 * s);
   pop();
 
+  // arms
+  stroke(0, 0, 0);
+  strokeWeight(4 * s);  
   line(x + 270, y + 530, x + 310, y + 500);
   ellipse(x + 270, y + 530, 4 * s, 3 * s);
 
@@ -262,10 +262,8 @@ function savior(x, y, s) {
   strokeWeight(3);
   line(x + 295, y + 485, x + 295 + (24 * s), y + 485);
 
-}
-
-function saviorSecondPosition(x, y, s) {
-  // the code for the savior stickman
+  } else {
+  // the code for the savior stickman in ACTIVE position
 
   // the switch control for the savior
   push();
@@ -281,22 +279,23 @@ function saviorSecondPosition(x, y, s) {
   line(x + 200, y + 520, x + 247, y + 495);
   pop();
 
-  // green part of the switch
-  fill(0, 255, 0);
-  stroke(35, 103, 35);
+  // red part of the switch
+  fill(255, 0, 0);
+  stroke(132, 8, 8);
   ellipse(x + 200, y + 530, 20);
   pop();
   
   // THE SAVIOR STICKMAN
   // body
   push();
+  strokeWeight(4 * s);  
   fill(255, 255, 255);
   translate(x + 270, y + 520);
   rotate(5.5);
   rect(-14, -32, 40 * s, 85 * s);
   pop();
 
-    // arms
+  // arms
   push();
   stroke(0, 0, 0);
   strokeWeight(4 * s);
@@ -324,14 +323,8 @@ function saviorSecondPosition(x, y, s) {
   // mouth
   strokeWeight(3);
   line(x + 225, y + 495, x + 225 + (24 * s), y + 495);
-
+  }
 }
-
-function draw() {
-  background(255, 255, 255);
-  saviorSecondPosition(400, 140, 0.7);
-}
-
 
 let speed = 3;
 
@@ -346,7 +339,8 @@ function draw() {
   } else if (gameState === "game") {
     backgroundElements();
     victimStickman(victim.x, victim.y, 0.5);
-    savior(400, 140, 0.7);
+    savior(400, 140, 0.7, keyIsDown(32));
+
 
     //Game mechanics
     if (gameRunning) {
@@ -370,6 +364,7 @@ function draw() {
       if (keyIsDown(32)) {
         victim.velocity = victim.velocity - thrustAcceleration;
       }
+
     }
   } else if (gameState === "end") {
     backgroundElements();
