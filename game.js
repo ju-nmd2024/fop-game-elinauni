@@ -18,87 +18,105 @@ let victim = {
   acceleration: 0.15,
 };
 
-//background for both 
-function backgroundElements() {
+//background
+function backgroundElements(x, y, s) {
   //background color
   background(19, 20, 62);
-
+  strokeWeight();
   //moon
   push();
-  fill(246, 239, 233);
-  ellipse(400, 400 + 100, 700);
-  fill(241, 227, 215);
   strokeWeight();
-  push();
-  translate(240, 280);
+  fill(246, 239, 233);
+  ellipse(width / 2, height / 2 + 100, 700);
+  fill(241, 227, 215);
+
+  translate(width / 2 - 160, height / 2 - 120);
   rotate(2.5);
   ellipse(0, 0, 140, 80);
   pop();
 
   push();
-  translate(130, 390);
+  fill(241, 227, 215);
+  strokeWeight();
+  translate(width / 2 - 270, height / 2 - 10);
   rotate(2.2);
   ellipse(0, 0, 100, 60);
   pop();
 
   push();
-  translate(200, 370);
+  fill(241, 227, 215);
+  strokeWeight();
+  translate(width / 2 - 200, height / 2 - 30);
   rotate(1.5);
   ellipse(0, 0, 50, 30);
   pop();
 
-  //ground
-  fill(0, 0, 0);
-  ellipse(800 / 2, 1930, 2500);
-
   //house
-  triangle(300, 235, 400, 0, 500, 235);
-  rect(345, 235, 110, 250 * 0.5);
-
-  quad(265, 360, 280, 600, 520, 600, 510, 340);
-  triangle(255, 410, 275, 290, 360, 395);
-
-  triangle(530, 395, 490, 270, 450, 390);
-
-  triangle(210, 585, 255, 470, 340, 580);
-  triangle(600, 555, 540, 425, 480, 560);
-  quad(230, 580, 220, 720, 570, 720, 580, 550);
-
-  quad(580, 550, 600, 420, 560, 410, 560, 515);
-  triangle(610, 423, 590, 270, 550, 410);
-
+  triangle(x - 100 * s, y - 165 * s, x, 0, x + 100 * s, y - 165 * s);
+  rect(x - 55 * s, y - 165 * s, 110 * s, 250 * 0.5 * s);
+    
+  quad(x - 135 * s, y - 40 * s, x - 120 * s, y + 200 * s, x + 120 * s, y + 200 * s, x + 110 * s, y - 60 * s);
+  triangle(x - 145 * s, y + 10 * s, x - 125 * s, y - 110 * s, x - 40 * s, y - 5 * s);
+    
+  triangle(x + 130 * s, y - 5 * s, x + 90 * s, y - 130 * s, x + 50 * s, y - 10 * s);
+    
+  triangle(x - 190 * s, y + 185 * s, x - 145 * s, y + 70 * s, x - 60 * s, y + 180 * s);
+  triangle(x + 200 * s, y + 155 * s, x + 140 * s, y + 25 * s, x + 80 * s, y + 160 * s);
+  quad(x - 170 * s, y + 180 * s, x - 180 * s, y + 320 * s, x + 170 * s, y + 320 * s, x + 180 * s, y + 150 * s);
+    
+  quad(x + 180 * s, y + 150 * s, x + 200 * s, y + 20 * s, x + 160 * s, y + 10 * s, x + 160 * s, y + 115 * s);
+  triangle(x + 210 * s, y + 23 * s, x + 190 * s, y - 130 * s, x + 150 * s, y + 10 * s);
+  
   //gravestone
   beginShape();
-  vertex(175, 710);
-  vertex(170, 670);
-  bezierVertex(170, 640, 210, 660, 210, 670);
-  vertex(220, 700);
+  vertex(x - 225 * s, y + 310 * s);
+  vertex(x - 230 * s, y + 270 * s);
+  bezierVertex(x - 230 * s, y + 240 * s, x - 190 * s, y + 260 * s, x - 190 * s, y + 270 * s);
+  vertex(x - 180 * s, y + 300 * s);
   endShape(CLOSE);
+    
+  quad(x - 220 * s, y + 255 * s, x - 235 * s, y + 215 * s, x - 223 * s, y + 210 * s, x - 214 * s, y + 258 * s);
+  quad(x - 245 * s, y + 230 * s, x - 246 * s, y + 237 * s, x - 205 * s, y + 223 * s, x - 205 * s, y + 215 * s);
 
-  quad(180, 655, 165, 615, 177, 610, 186, 658);
-  quad(155, 630, 154, 637, 195, 623, 195, 615);
-
+  strokeWeight();
   //windows
   fill(224, 122, 37);
-  quad(280, 418, 287, 467, 340, 460, 333, 405);
-  quad(498, 400, 505, 450, 450, 455, 447, 397);
-  quad(247, 590, 250, 670, 310, 670, 310, 580);
-  quad(550, 580, 555, 670, 475, 670, 477, 575);
-  quad(565, 430, 590, 430, 588, 453, 563, 449);
-
+  quad(x - 120 * s, y + 18 * s, x - 113 * s, y + 67 * s, x - 60 * s, y + 60 * s, x - 67 * s, y + 5 * s);
+  quad(x + 98 * s, y, x + 105 * s, y + 50 * s, x + 50 * s, y + 55 * s, x + 47 * s, y - 3 * s);
+  quad(x - 153 * s, y + 190 * s, x - 150 * s, y + 270 * s, x - 90 * s, y + 270 * s, x - 90 * s, y + 180 * s);
+  quad(x + 150 * s, y + 180 * s, x + 155 * s, y + 270 * s, x + 75 * s, y + 270 * s, x + 77 * s, y + 175 * s);
+  quad(x + 165 * s, y + 30 * s, x + 190 * s, y + 30 * s, x + 188 * s, y + 53 * s, x + 163 * s, y + 49 * s);
+  
   //lines on windows
+  stroke(0);
   strokeWeight(2);
   fill(0, 0, 0);
-  line(302, 411, 309, 463);
-  line(284, 442, 335, 432);
-  line(475, 395, 480, 455);
-  line(500, 425, 450, 427);
-  line(277, 585, 277, 670);
-  line(515, 577, 518, 670);
-  line(577, 430, 575, 450);
-  line(565, 440, 588, 442);
+  line(x - 98 * s, y + 11 * s, x - 91 * s, y + 63 * s);
+  line(x - 116 * s, y + 42 * s, x - 65 * s, y + 32 * s);
+  line(x + 75 * s, y - 5 * s, x + 80 * s, y + 55 * s);
+  line(x + 100 * s, y + 25 * s, x + 50 * s, y + 27 * s);
+  line(x - 123 * s, y + 185 * s, x - 123 * s, y + 270 * s);
+  line(x + 115 * s, y + 177 * s, x + 118 * s, y + 270 * s);
+  line(x + 177 * s, y + 30 * s, x + 175 * s, y + 50 * s);
+  line(x + 165 * s, y + 40 * s, x + 188 * s, y + 42 * s);
+  }
+
+function groundForStartAndEnd() {
+    fill(0, 0, 0);
+    beginShape();
+    vertex(900, 470);
+    bezierVertex(900, 300, 494, 250, 480, 500);
+    bezierVertex(480, 800, 280, 720, 250, 650);
+    bezierVertex(160, 400, 50, 400, 0, 530);
+    vertex(0, height);
+    vertex(width, height);
+    endShape(CLOSE);
 }
 
+function ground() {
+    fill(0, 0, 0);
+    ellipse(width / 2, 1930, 2500);
+}
 
 // the code of the victim stickman AND elevator
 function victimStickman(x, y, s) {
@@ -172,7 +190,7 @@ function victimStickman(x, y, s) {
   ellipse(x, y + 12 * s, 30 * s, 20 * s);
 }
 
-// the code of the victim stickman BUT no elevator
+// the code of the victim stickman BUT elevator
 function victimStickmanNoElevator(x, y, s) {
     // arms
     push();
@@ -203,6 +221,58 @@ function victimStickmanNoElevator(x, y, s) {
   
     //mouth
     ellipse(x, y + 12 * s, 30 * s, 20 * s);
+  }
+
+  //code for dead victim stickman
+  function victimDead(x, y, s) {
+    // DEAD VICTIM STICKMAN
+    translate(350, 720);
+    rotate(4.7);
+
+    //pumpkin juice
+    push();
+    fill(224, 122, 37);
+    strokeWeight();
+    ellipse(x, y + 50, 100, 200);
+    pop();
+        
+    push();
+    // arms
+    push();
+    fill(0, 0, 0);
+    strokeWeight(4 * s);
+    line(x, y + 50 * s, x + 60 * s, y - 20 * s);
+    ellipse(x + 60 * s, y - 20 * s, 4 * s, 3 * s);
+    line(x, y + 50 * s, x - 60 * s, y - 20 * s);
+    ellipse(x - 60 * s, y - 20 * s, 4 * s, 3 * s);
+    
+    // body and head
+    fill(255, 255, 255);
+    rect(x - 20 * s, y + 10 * s, 40 * s, 90 * s);
+    ellipse(x, y, 60 * s);
+    
+    // legs
+    line(x + 20 * s, y + 100 * s, x + 20 * s, y + 170 * s);
+    ellipse(x + 22 * s, y + 170 * s, 4 * s, 3 * s);
+    line(x - 20 * s, y + 100 * s, x - 20 * s, y + 170 * s);
+    ellipse(x - 22 * s, y + 170 * s, 4 * s, 3 * s);
+    pop();
+    
+    // eyes
+    fill(0, 0, 0);
+    push();
+    strokeWeight(2);
+    line(x - 13, y - 7, x - 5, y - 2);
+    line(x - 13, y - 2, x - 5, y - 7);
+    line(x + 13, y - 7, x + 5, y - 2);
+    line(x + 13, y - 2, x + 5, y - 7);
+    pop();
+    
+    //mouth
+    strokeWeight(2 * s);
+    ellipse(x, y + 12 * s, 30 * s, 20 * s);
+    pop();
+
   }
 
 
@@ -369,11 +439,22 @@ function draw() {
   //GAME STATES
   //gotten from Garrit's videos and a floppy bird
   if (gameState === "start") {
-    backgroundElements();
+    backgroundElements(680, 200, 0.5);
+    groundForStartAndEnd();
+    push();
     strokeWeight();
-    text("Start", 200, 100);
+    textSize(20);
+    fill(255, 255, 255);
+    text("Saving Steve out of a haunted house!", 50, 50);
+    textSize(13);
+    text("Steve and Alex were trapped inside a haunted house. Alex was able to run away, but Steve is trapped inside the elevator. Help Alex save Steve and stay alive!", 
+    50, 80, 500, 80);
+    text("Press [SPACE] to contol the switch ", 50, 137);
+    text("Click the mouse to start the game", 50, 167);
+    pop();
   } else if (gameState === "game") {
-    backgroundElements();
+    backgroundElements(400, 400, 1);
+    ground();
     victimStickman(victim.x, victim.y, 0.5);
     savior(400, 140, 0.7, keyIsDown(32));
 
@@ -390,7 +471,7 @@ function draw() {
       } else if (victim.y > landingY && victim.velocity <= 3) {
         gameRunning = false;
         gameState = "end";
-        result = "Yippie! You won! Slay!";
+        result = "Congratulation! You won and saved Steve and Alex!";
       }
       let thrustAcceleration = 0.4;
 
@@ -400,18 +481,26 @@ function draw() {
 
     }
   } else if (gameState === "end") {
-    backgroundElements();
-    strokeWeight();
-    
-
   // different screens for win or lose
   // the idea for the next 7 lines was taken from this video in youtube https://www.youtube.com/watch?v=hC36SiGuBfs
   if (result.includes("crashed")) {
-    victimStickmanNoElevator(400, 140, 0.7);
+    backgroundElements(400, 400, 1);
+    ground();
+    push();
+    victimDead(0, 0, 0.7);
+    pop();
+
   }  else if (result.includes("won")) {
-    victimStickmanNoElevator(400, 140, 0.7);
+    backgroundElements(680, 200, 0.5);
+    groundForStartAndEnd();
+    victimStickmanNoElevator(65, 380, 0.5);
+    victimStickmanNoElevator(115, 380, 0.5);
   }
+    push();
+    strokeWeight();
+    fill(255, 255, 255);
     text(result, 50, 100);
+    pop();
   }
 }
 
