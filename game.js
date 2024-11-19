@@ -1,17 +1,12 @@
+function setup() {
+  createCanvas(800, 800);
+}
+
 let gameRunning = true;
 let gameState = "start";
 let landingY = 595;
+let thrustAcceleration = 0.4;
 let result;
-
-function setup() {
-  createCanvas(800, 800);
-  gameRunning = true;
-  gameState = "start";
-  landingY = 595;
-  result;
-}
-
-
 
 // Setting for victim
 let victim = {
@@ -466,7 +461,6 @@ function draw() {
         gameState = "end";
         result = "Congratulations! You won and saved Steve and Alex!";
       }
-      let thrustAcceleration = 0.4;
 
       if (keyIsDown(32)) {
         victim.velocity = victim.velocity - thrustAcceleration;
